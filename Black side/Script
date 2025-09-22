@@ -1,0 +1,63 @@
+import math
+
+def rectangle_solver():
+    base = input("Base (or b)? ")
+    height = input("Height (or h)? ")
+
+    # allow symbolic b or h
+    if base.lower() == "b" and height.lower() != "h":
+        h = float(height)
+        print("Area = b *", h)
+        print("Perimeter = 2b +", 2*h)
+    elif height.lower() == "h" and base.lower() != "b":
+        b = float(base)
+        print("Area =", b, "* h")
+        print("Perimeter =", 2*b, "+ 2h")
+    else:
+        b = float(base)
+        h = float(height)
+        area = b * h
+        perim = 2*(b+h)
+        print("Rectangle:")
+        print("Perimeter =", perim)
+        print("Area =", area)
+
+def triangle_solver():
+    base = input("Base (or b)? ")
+    height = input("Height (or h)? ")
+    hyp = input("Hypotenuse (or leave blank)? ")
+
+    if base.lower() == "b" and height.lower() != "h":
+        h = float(height)
+        print("Area = (1/2)*b*", h)
+        print("Perimeter = b +", h, "+ hyp")
+    elif height.lower() == "h" and base.lower() != "b":
+        b = float(base)
+        print("Area = (1/2)*", b, "* h")
+        print("Perimeter =", b, "+ h + hyp")
+    elif base.lower() == "b" and height.lower() == "h":
+        print("Area = (1/2)*b*h")
+        print("Perimeter = b + h + hyp")
+    else:
+        b = float(base)
+        h = float(height)
+        if hyp.strip() == "":
+            hypv = math.sqrt(b**2 + h**2)
+        else:
+            hypv = float(hyp)
+        area = 0.5*b*h
+        perim = b+h+hypv
+        print("Triangle:")
+        print("Perimeter =", perim)
+        print("Area =", area)
+
+def main():
+    shape = input("Triangle or Rectangle? ").strip().lower()
+    if shape == "rectangle":
+        rectangle_solver()
+    elif shape == "triangle":
+        triangle_solver()
+    else:
+        print("Invalid choice")
+
+main()
