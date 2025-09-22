@@ -1,0 +1,29 @@
+import math
+
+def simplify_sqrt(n):
+    """Return simplified radical form of sqrt(n) as (outside, inside)."""
+    outside = 1
+    inside = n
+    for i in range(int(math.sqrt(n)), 1, -1):
+        if n % (i*i) == 0:
+            outside = i
+            inside = n // (i*i)
+            break
+    return (outside, inside)
+
+def main():
+    area = int(input("Square area? "))
+    outside, inside = simplify_sqrt(area)
+
+    print("Square:")
+    if inside == 1:  # perfect square
+        print("Side =", outside)
+    elif inside == area:  # could not simplify
+        print("Side = √" + str(area))
+    else:
+        if outside == 1:
+            print("Side = √" + str(inside * outside * outside))
+        else:
+            print("Side =", str(outside) + "√" + str(inside))
+
+main()
