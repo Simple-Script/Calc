@@ -1,0 +1,95 @@
+import math
+
+def distance(x1, y1, x2, y2):
+    return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+def rectangle_from_points():
+    print("Enter two points for base:")
+    x1 = float(input("x1=")); y1 = float(input("y1="))
+    x2 = float(input("x2=")); y2 = float(input("y2="))
+    base = distance(x1, y1, x2, y2)
+
+    print("Enter two points for height:")
+    x3 = float(input("x3=")); y3 = float(input("y3="))
+    x4 = float(input("x4=")); y4 = float(input("y4="))
+    height = distance(x3, y3, x4, y4)
+
+    area = base * height
+    perimeter = 2 * (base + height)
+
+    print("Rectangle:")
+    print("Base =", base)
+    print("Height =", height)
+    print("Perimeter =", perimeter)
+    print("Area =", area)
+
+def rectangle_from_values():
+    base = float(input("Base length="))
+    height = float(input("Height length="))
+    area = base * height
+    perimeter = 2 * (base + height)
+
+    print("Rectangle:")
+    print("Perimeter =", perimeter)
+    print("Area =", area)
+
+def triangle_from_points():
+    print("Enter three points:")
+    x1 = float(input("x1=")); y1 = float(input("y1="))
+    x2 = float(input("x2=")); y2 = float(input("y2="))
+    x3 = float(input("x3=")); y3 = float(input("y3="))
+
+    a = distance(x1, y1, x2, y2)
+    b = distance(x2, y2, x3, y3)
+    c = distance(x3, y3, x1, y1)
+
+    perimeter = a + b + c
+    s = perimeter / 2  # semi-perimeter
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+
+    print("Triangle:")
+    print("Side a =", a)
+    print("Side b =", b)
+    print("Side c =", c)
+    print("Perimeter =", perimeter)
+    print("Area =", area)
+
+def triangle_from_values():
+    ttype = input("Right or Irregular? ").strip().lower()
+
+    if ttype == "right":
+        base = float(input("Base="))
+        height = float(input("Height="))
+        hyp = float(input("Hypotenuse="))
+        perimeter = base + height + hyp
+        area = (base * height) / 2
+    else:
+        a = float(input("Side a="))
+        b = float(input("Side b="))
+        c = float(input("Side c="))
+        perimeter = a + b + c
+        s = perimeter / 2
+        area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+
+    print("Triangle:")
+    print("Perimeter =", perimeter)
+    print("Area =", area)
+
+def main():
+    shape = input("Triangle or Rectangle? ").strip().lower()
+    mode = input("Points or Values? ").strip().lower()
+
+    if shape == "rectangle":
+        if mode == "points":
+            rectangle_from_points()
+        else:
+            rectangle_from_values()
+    elif shape == "triangle":
+        if mode == "points":
+            triangle_from_points()
+        else:
+            triangle_from_values()
+    else:
+        print("Invalid choice.")
+
+main()
